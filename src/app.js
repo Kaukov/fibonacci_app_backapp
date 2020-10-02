@@ -5,8 +5,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const { db } = require('./utils')
+const routes = require('./routes')
+const { errorHandler } = require('./middleware')
 
-db.sync({ force: process.env.DB_FORCE_CLEAN })
+db.sync({ force: process.env.DB_FORCE_CLEAN === 'true' })
     .then(() => {
         const app = express()
 
@@ -15,7 +17,8 @@ db.sync({ force: process.env.DB_FORCE_CLEAN })
         app.use(bodyParser.json())
         app.use(bodyParser.urlencoded({ extended: false }))
 
-        app.get('/', (_req, res) => res.status(200).send('Hello World'))
+        app.use(routes)
+        app.use(errorHandler)
 
         app.listen(port, () => {
             console.log(`App started on http://localhost:${port}`)
