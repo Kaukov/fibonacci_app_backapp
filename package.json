@@ -18,6 +18,7 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "fibonacci_app_lib": "git+https://github.com/Kaukov/fibonacci_app_lib.git",
     "mariadb": "^2.4.2",
     "sequelize": "^6.3.5"
   }
