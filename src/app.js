@@ -4,15 +4,26 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const app = express()
+const { db } = require('./utils')
 
-const port = process.env.APP_PORT || 3000
+db.sync({ force: process.env.DB_FORCE_CLEAN })
+    .then(() => {
+        const app = express()
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+        const port = process.env.APP_PORT || 3000
 
-app.get('/', (_req, res) => res.status(200).send('Hello World'))
+        app.use(bodyParser.json())
+        app.use(bodyParser.urlencoded({ extended: false }))
 
-app.listen(port, () => {
-    console.log(`App started on http://localhost:${port}`)
-})
+        app.get('/', (_req, res) => res.status(200).send('Hello World'))
+
+        app.listen(port, () => {
+            console.log(`App started on http://localhost:${port}`)
+        })
+    })
+    .catch((error) => {
+        console.log('--------------------------------')
+        console.log('Error while connecting to the database!\n')
+        console.log(error.message)
+        console.log('--------------------------------')
+    })
