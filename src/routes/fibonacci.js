@@ -28,8 +28,15 @@ const generateFibonacci = async (req, res, next) => {
             return res.status(200).json(JSON.parse(fibTableInDB.table))
         }
 
+        const table = fibonacciTable(fibonacciNumber)
+
+        // If we can't generate a table, throw an error
+        if (typeof table === 'string') {
+            throw new Error(table)
+        }
+
         // Send a newly generated table for the provided number
-        res.status(200).json(fibonacciTable(fibonacciNumber))
+        res.status(200).json(table)
     } catch (err) {
         next(err)
     }
@@ -63,6 +70,11 @@ const cacheFibonacci = async (req, res, next) => {
 
         // Generate a new Fibonacci table
         const table = fibonacciTable(fibonacciNumber)
+
+        // If we can't generate a table, throw an error
+        if (typeof table === 'string') {
+            throw new Error(table)
+        }
 
         // Cache the generated table in the DB in the backgorund
         Fibonacci.create({ num: fibonacciNumber, table: JSON.stringify(table) })
