@@ -40,7 +40,7 @@ describe('Fibonacci API Tests Bad Requests', () => {
     })
 
     it('POST /fibonacci?v=2 should return an error message', (done) => {
-        chai.request(server).post('/fibonacci').query({ v: 2 }).end((err, res) => {
+        chai.request(server).post('/fibonacci').send({ v: 2 }).end((err, res) => {
             expect(res).to.be.json
             expect(res).to.have.status(400)
             expect(res.body).to.be.an('object')
@@ -62,7 +62,7 @@ describe('Fibonacci API Tests Bad Requests', () => {
     })
 
     it('POST /fibonacci?n=asdasd should return an error message', (done) => {
-        chai.request(server).post('/fibonacci').query({ n: 'asdasd' }).end((err, res) => {
+        chai.request(server).post('/fibonacci').send({ n: 'asdasd' }).end((err, res) => {
             expect(res).to.be.json
             expect(res).to.have.status(400)
             expect(res.body).to.be.an('object')
@@ -176,7 +176,7 @@ describe('Fibonacci API Tests Valid Requests', () => {
     })
 
     it('POST /fibonacci?n=1 should return the proper table response', (done) => {
-        chai.request(server).post('/fibonacci').query({ n: 1 }).end((err, res) => {
+        chai.request(server).post('/fibonacci').send({ n: 1 }).end((err, res) => {
             expect(res).to.be.json
             expect(res).to.have.status(200)
             expect(res.body).to.be.an('array')
@@ -190,7 +190,7 @@ describe('Fibonacci API Tests Valid Requests', () => {
     })
 
     it('POST /fibonacci?n=2 should return the proper table response', (done) => {
-        chai.request(server).post('/fibonacci').query({ n: 2 }).end((err, res) => {
+        chai.request(server).post('/fibonacci').send({ n: 2 }).end((err, res) => {
             expect(res).to.be.json
             expect(res).to.have.status(200)
             expect(res.body).to.be.an('array')
@@ -205,7 +205,7 @@ describe('Fibonacci API Tests Valid Requests', () => {
     })
 
     it('POST /fibonacci?n=3 should return the proper table response', (done) => {
-        chai.request(server).post('/fibonacci').query({ n: 3 }).end((err, res) => {
+        chai.request(server).post('/fibonacci').send({ n: 3 }).end((err, res) => {
             expect(res).to.be.json
             expect(res).to.have.status(200)
             expect(res.body).to.be.an('array')
@@ -221,7 +221,7 @@ describe('Fibonacci API Tests Valid Requests', () => {
     })
 
     it('POST /fibonacci?n=4 should return the proper table response', (done) => {
-        chai.request(server).post('/fibonacci').query({ n: 4 }).end((err, res) => {
+        chai.request(server).post('/fibonacci').send({ n: 4 }).end((err, res) => {
             expect(res).to.be.json
             expect(res).to.have.status(200)
             expect(res.body).to.be.an('array')
@@ -238,7 +238,7 @@ describe('Fibonacci API Tests Valid Requests', () => {
     })
 
     it('POST /fibonacci?n=5 should return the proper table response', (done) => {
-        chai.request(server).post('/fibonacci').query({ n: 5 }).end((err, res) => {
+        chai.request(server).post('/fibonacci').send({ n: 5 }).end((err, res) => {
             expect(res).to.be.json
             expect(res).to.have.status(200)
             expect(res.body).to.be.an('array')
@@ -256,7 +256,7 @@ describe('Fibonacci API Tests Valid Requests', () => {
     })
 
     it('POST /fibonacci?n=8 should return the proper table response', (done) => {
-        chai.request(server).post('/fibonacci').query({ n: 8 }).end((err, res) => {
+        chai.request(server).post('/fibonacci').send({ n: 8 }).end((err, res) => {
             expect(res).to.be.json
             expect(res).to.have.status(200)
             expect(res.body).to.be.an('array')

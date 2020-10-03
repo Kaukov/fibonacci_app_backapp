@@ -54,7 +54,7 @@ const generateFibonacci = async (req, res, next) => {
  */
 const cacheFibonacci = async (req, res, next) => {
     try {
-        const fibonacciNumber = parseInt(req.query.n)
+        const fibonacciNumber = parseInt(req.body.n)
 
         if (isNaN(fibonacciNumber)) {
             throw new Error('No valid parameter and value provided!')
