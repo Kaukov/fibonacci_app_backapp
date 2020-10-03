@@ -25,7 +25,7 @@ const generateFibonacci = async (req, res, next) => {
 
         // If we have already cached a table for this number, send it
         if (fibTableInDB) {
-            return res.status(200).json(JSON.parse(fibTableInDB))
+            return res.status(200).json(JSON.parse(fibTableInDB.table))
         }
 
         // Send a newly generated table for the provided number
