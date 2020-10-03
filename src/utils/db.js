@@ -9,6 +9,7 @@ const db = new Sequelize({
     dialectOptions: {
         timezone: 'Etc/GMT0'
     },
+    logging: false,
 })
 
 module.exports = {
